@@ -1,13 +1,14 @@
-import { GildedTros } from "./gildedTros/gilded-tros.js";
+import { GildedTros } from "./gildedTros/index.js";
 import arrayWithDaysAsLength from "./days/index.js";
 import items from "./items/index.js";
 
-console.log("AXXES CODE KATA - GILDED TROS");
-
 const app = new GildedTros(items);
 
-arrayWithDaysAsLength.forEach((_, index) => {
-    console.log("-------- day", index, "--------");
+console.log("AXXES CODE KATA - GILDED TROS");
+
+arrayWithDaysAsLength.forEach((_, indexDay) => {
+    const dayNumber = indexDay + 1;
+    console.log("-------- day", dayNumber, "--------");
     console.table(items);
 
     app.updateQuality();
