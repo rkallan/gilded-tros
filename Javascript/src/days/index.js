@@ -1,3 +1,4 @@
+import { getType } from "../helpers/index.js";
 import { defaultDays } from "./const/index.js";
 
 const getDays = () => {
@@ -5,9 +6,11 @@ const getDays = () => {
 
     const [_, daysAsString] = processArgv.find((value) => value.includes("days"))?.split("=") || [];
 
-    const days = Number(daysAsString) || defaultDays;
+    const days = getType(daysAsString) === "string" && daysAsString.trim().length ? Number(daysAsString) : NaN;
 
-    return days;
+    if (!isNaN(days)) return days;
+
+    return defaultDays;
 };
 
 const getArrayWithDaysAsLength = () => {
@@ -18,4 +21,6 @@ const getArrayWithDaysAsLength = () => {
     return arrayWithDaysLength;
 };
 
-export { getDays, getArrayWithDaysAsLength };
+const arrayWithDaysAsLength = getArrayWithDaysAsLength();
+
+export default arrayWithDaysAsLength;
