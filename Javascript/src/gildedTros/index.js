@@ -1,57 +1,60 @@
+import { getCategory, getQuality } from "../helpers/index.js";
+
 export class GildedTros {
     constructor(items) {
         this.items = items;
     }
 
+    getIncreaseValueBackstageItem(sellIn) {
+        if (sellIn < 0) return 0;
+
+        if (sellIn >= 0 && sellIn <= 5) return 3;
+
+        if (sellIn <= 10 && sellIn > 5) return 2;
+
+        return 1;
+    }
+
+    getIncreaseValue(sellIn, category) {
+        if (category === "backstage") return this.getIncreaseValueBackstageItem(sellIn);
+
+        const increaseValues = [1, 2];
+        const increaseKey = Number(Math.sign(sellIn) === -1);
+        const increaseWith = increaseValues[increaseKey];
+
+        if (category === "good") return increaseWith;
+
+        return -Math.abs(increaseWith);
+    }
+
+    setLegendaryItem(item) {
+        if (item.sellIn !== null) item.sellIn = null;
+        if (item.quality !== 80) item.quality = 80;
+    }
+
+    setItem(item, category) {
+        const sellIn = item.sellIn - 1;
+        const increaseWith = this.getIncreaseValue(sellIn, category);
+        const quality = Math.sign(sellIn) === -1 && category === "backstage" ? 0 : this.calculateQuality(item.quality, increaseWith);
+
+        item.sellIn = sellIn;
+        item.quality = quality;
+    }
+
+    calculateQuality(currentQuality, increaseWith) {
+        const newQualityValue = currentQuality + increaseWith;
+        const quality = getQuality(newQualityValue);
+
+        return quality;
+    }
+
     updateQuality() {
-        for (let i = 0; i < this.items.length; i++) {
-            if (this.items[i].name != "Good Wine" && this.items[i].name != "Backstage passes for Re:Factor" && this.items[i].name != "Backstage passes for HAXX") {
-                if (this.items[i].quality > 0) {
-                    if (this.items[i].name != "B-DAWG Keychain") {
-                        this.items[i].quality = this.items[i].quality - 1;
-                    }
-                }
-            } else {
-                if (this.items[i].quality < 50) {
-                    this.items[i].quality = this.items[i].quality + 1;
+        this.items.forEach((item) => {
+            const category = getCategory(item.name);
 
-                    if (this.items[i].name == "Backstage passes for Re:Factor") {
-                        if (this.items[i].sellIn < 11) {
-                            if (this.items[i].quality < 50) {
-                                this.items[i].quality = this.items[i].quality + 1;
-                            }
-                        }
+            if (category === "legendary") return this.setLegendaryItem(item);
 
-                        if (this.items[i].sellIn < 6) {
-                            if (this.items[i].quality < 50) {
-                                this.items[i].quality = this.items[i].quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (this.items[i].name != "B-DAWG Keychain") {
-                this.items[i].sellIn = this.items[i].sellIn - 1;
-            }
-
-            if (this.items[i].sellIn < 0) {
-                if (this.items[i].name != "Good Wine") {
-                    if (this.items[i].name != "Backstage passes for Re:Factor" || this.items[i].name != "Backstage passes for HAXX") {
-                        if (this.items[i].quality > 0) {
-                            if (this.items[i].name != "B-DAWG Keychain") {
-                                this.items[i].quality = this.items[i].quality - 1;
-                            }
-                        }
-                    } else {
-                        this.items[i].quality = this.items[i].quality - this.items[i].quality;
-                    }
-                } else {
-                    if (this.items[i].quality < 50) {
-                        this.items[i].quality = this.items[i].quality + 1;
-                    }
-                }
-            }
-        }
+            this.setItem(item, category);
+        });
     }
 }
