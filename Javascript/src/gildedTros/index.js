@@ -1,4 +1,4 @@
-import { getCategory, getQuality } from "../helpers/index.js";
+import { getCategory, getQuality } from "../helpers";
 
 export class GildedTros {
     constructor(items) {

@@ -1,3 +1,3 @@
-export { default as getType } from "./getType.js";
-export { default as getCategory } from "./getCategory.js";
-export { default as getQuality } from "./getQuality.js";
+export { default as getType } from "./getType";
+export { default as getCategory } from "./getCategory";
+export { default as getQuality } from "./getQuality";

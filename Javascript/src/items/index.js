@@ -1,6 +1,6 @@
-import { getType, getCategory, getQuality } from "../helpers/index.js";
-import { Item } from "./item.js";
-import dataItems from "./data/items.js";
+import { getType, getCategory, getQuality } from "../helpers";
+import { Item } from "./item";
+import dataItems from "./data/items";
 
 const getItems = () => {
     if (getType(dataItems) !== "array") return [];
