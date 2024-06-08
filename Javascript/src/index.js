@@ -1,12 +1,14 @@
-import { getArrayWithDaysAsLength } from "./days/index.js";
-import dataItems from "./resources/data/items.js";
-
-const arrayWithDaysAsLength = getArrayWithDaysAsLength();
-
-console.log(dataItems.length);
+import { GildedTros } from "./gildedTros/gilded-tros.js";
+import arrayWithDaysAsLength from "./days/index.js";
+import items from "./items/index.js";
 
 console.log("AXXES CODE KATA - GILDED TROS");
 
+const app = new GildedTros(items);
+
 arrayWithDaysAsLength.forEach((_, index) => {
-    console.log("-------- day " + index + " --------");
+    console.log("-------- day", index, "--------");
+    console.table(items);
+
+    app.updateQuality();
 });
