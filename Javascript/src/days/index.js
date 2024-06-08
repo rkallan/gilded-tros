@@ -8,14 +8,13 @@ const getDays = () => {
 
     const days = getType(daysAsString) === "string" && daysAsString.trim().length ? Number(daysAsString) : NaN;
 
-    if (!isNaN(days)) return days;
+    if (!isNaN(days)) return days || defaultDays;
 
     return defaultDays;
 };
 
 const getArrayWithDaysAsLength = () => {
-    const days = getDays();
-    const arrayLength = days + 1;
+    const arrayLength = getDays();
     const arrayWithDaysLength = Array.from(Array(arrayLength));
 
     return arrayWithDaysLength;
