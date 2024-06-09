@@ -1,8 +1,7 @@
 import { qualityMinMaxValue } from "../const/index.js";
 
-const getQualityWithInMinMaxWithInMinMax = (value, minMaxValue = qualityMinMaxValue) => {
+const getQualityWithInMinMaxWithInMinMax = (value, { minValue, maxValue } = qualityMinMaxValue) => {
     const quality = Number(value) || 0;
-    const { minValue, maxValue } = minMaxValue;
 
     if (quality < minValue) return minValue;
 
