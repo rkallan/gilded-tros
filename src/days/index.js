@@ -1,5 +1,5 @@
 import { getType } from "../helpers/index.js";
-import { defaultDays } from "./const/index.js";
+import { defaultDays } from "../const/index.js";
 
 const getDays = () => {
     const processArgv = process.argv.slice(2);

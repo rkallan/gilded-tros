@@ -1,9 +1,4 @@
-const categories = {
-    legendary: "B-DAWG Keychain",
-    backstage: "Backstage passes",
-    good: "Good Wine",
-    smelly: ["Duplicate Code", "Long Methods", "Ugly Variable Names"],
-};
+import { categories } from "../const/index.js";
 
 const getCategory = (value) => {
     const valueAsLowerCase = value.toLowerCase();
