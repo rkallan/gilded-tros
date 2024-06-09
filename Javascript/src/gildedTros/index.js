@@ -5,7 +5,7 @@ export class GildedTros {
         this.items = items;
     }
 
-    getIncreaseValueBackstageItem(sellIn) {
+    #getIncreaseValueBackstageItem(sellIn) {
         if (sellIn < 0) return 0;
 
         if (sellIn >= 0 && sellIn <= 5) return 3;
@@ -15,8 +15,8 @@ export class GildedTros {
         return 1;
     }
 
-    getIncreaseValue(sellIn, category) {
-        if (category === "backstage") return this.getIncreaseValueBackstageItem(sellIn);
+    #getIncreaseValue(sellIn, category) {
+        if (category === "backstage") return this.#getIncreaseValueBackstageItem(sellIn);
 
         const increaseValues = [1, 2];
         const increaseKey = Number(Math.sign(sellIn) === -1);
@@ -31,21 +31,21 @@ export class GildedTros {
         return increaseNormalItemWith;
     }
 
-    setLegendaryItem(item) {
+    #setLegendaryItem(item) {
         if (item.sellIn !== null) item.sellIn = null;
         if (item.quality !== 80) item.quality = 80;
     }
 
-    setItem(item, category) {
+    #setItem(item, category) {
         const sellIn = item.sellIn - 1;
-        const increaseWith = this.getIncreaseValue(sellIn, category);
-        const quality = Math.sign(sellIn) === -1 && category === "backstage" ? 0 : this.calculateQuality(item.quality, increaseWith);
+        const increaseWith = this.#getIncreaseValue(sellIn, category);
+        const quality = Math.sign(sellIn) === -1 && category === "backstage" ? 0 : this.#calculateQuality(item.quality, increaseWith);
 
         item.sellIn = sellIn;
         item.quality = quality;
     }
 
-    calculateQuality(currentQuality, increaseWith) {
+    #calculateQuality(currentQuality, increaseWith) {
         const newQualityValue = currentQuality + increaseWith;
         const quality = getQualityWithInMinMax(newQualityValue);
 
@@ -56,9 +56,9 @@ export class GildedTros {
         this.items.forEach((item) => {
             const category = getCategory(item.name);
 
-            if (category === "legendary") return this.setLegendaryItem(item);
+            if (category === "legendary") return this.#setLegendaryItem(item);
 
-            this.setItem(item, category);
+            this.#setItem(item, category);
         });
     }
 }
