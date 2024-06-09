@@ -1,4 +1,4 @@
-import { getCategory, getQualityWithInMinMax } from "../helpers";
+import { getCategory, getQualityWithInMinMax } from "../helpers/index.js";
 
 export class GildedTros {
     constructor(items) {

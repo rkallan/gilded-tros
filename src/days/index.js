@@ -1,10 +1,10 @@
-import { getType } from "../helpers";
-import { defaultDays } from "./const";
+import { getType } from "../helpers/index.js";
+import { defaultDays } from "./const/index.js";
 
 const getDays = () => {
     const processArgv = process.argv.slice(2);
 
-    const [_, daysAsString] = processArgv.find((value) => value.includes("days"))?.split("=") || [];
+    const [, daysAsString] = processArgv.find((value) => value.includes("days"))?.split("=") || [];
 
     const days = getType(daysAsString) === "string" && daysAsString.trim().length ? Number(daysAsString) : NaN;
 

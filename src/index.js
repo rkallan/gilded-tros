@@ -1,6 +1,6 @@
-import { GildedTros } from "./gildedTros";
-import arrayWithDaysAsLength from "./days";
-import items from "./items";
+import { GildedTros } from "./gildedTros/index.js";
+import arrayWithDaysAsLength from "./days/index.js";
+import items from "./items/index.js";
 
 const app = new GildedTros(items);
 

@@ -1,6 +1,6 @@
-import { getType, getCategory, getQualityWithInMinMax } from "../helpers";
-import { Item } from "./item";
-import dataItems from "./data/items";
+import { getType, getCategory, getQualityWithInMinMax } from "../helpers/index.js";
+import { Item } from "./item.js";
+import dataItems from "./data/items.js";
 
 const getItems = () => {
     if (getType(dataItems) !== "array") return [];
