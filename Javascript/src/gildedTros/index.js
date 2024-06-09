@@ -24,7 +24,11 @@ export class GildedTros {
 
         if (category === "good") return increaseWith;
 
-        return -Math.abs(increaseWith);
+        const increaseNormalItemWith = -Math.abs(increaseWith);
+
+        if (category === "smelly") return increaseNormalItemWith * 2;
+
+        return increaseNormalItemWith;
     }
 
     setLegendaryItem(item) {
