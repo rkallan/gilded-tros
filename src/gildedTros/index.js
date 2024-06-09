@@ -39,7 +39,7 @@ export class GildedTros {
     #setItem(item, category) {
         const sellIn = item.sellIn - 1;
         const increaseWith = this.#getIncreaseValue(sellIn, category);
-        const quality = Math.sign(sellIn) === -1 && category === "backstage" ? 0 : this.#calculateQuality(item.quality, increaseWith);
+        const quality = sellIn < 0 && category === "backstage" ? 0 : this.#calculateQuality(item.quality, increaseWith);
 
         item.sellIn = sellIn;
         item.quality = quality;
