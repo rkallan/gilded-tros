@@ -32,7 +32,7 @@ const items = [
     {
         name: "Backstage passes for Re:Factor",
         sellIn: 10,
-        quality: 49,
+        quality: 9,
     },
     {
         name: "Backstage passes for HAXX",
