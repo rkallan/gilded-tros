@@ -1,11 +1,12 @@
-const getQuality = (value) => {
+const getQualityWithInMinMaxWithInMinMax = (value, minMaxValue = { minValue: 0, maxValue: 50 }) => {
     const quality = Number(value) || 0;
+    const { minValue, maxValue } = minMaxValue;
 
-    if (quality <= 0) return 0;
+    if (quality < minValue) return minValue;
 
-    if (quality > 50) return 50;
+    if (quality > maxValue) return maxValue;
 
     return quality;
 };
 
-export default getQuality;
+export default getQualityWithInMinMaxWithInMinMax;

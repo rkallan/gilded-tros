@@ -1,4 +1,4 @@
-import { getCategory, getQuality } from "../helpers";
+import { getCategory, getQualityWithInMinMax } from "../helpers";
 
 export class GildedTros {
     constructor(items) {
@@ -47,7 +47,7 @@ export class GildedTros {
 
     calculateQuality(currentQuality, increaseWith) {
         const newQualityValue = currentQuality + increaseWith;
-        const quality = getQuality(newQualityValue);
+        const quality = getQualityWithInMinMax(newQualityValue);
 
         return quality;
     }
