@@ -1,4 +1,17 @@
 {
-    "presets": ["@babel/preset-env"],
-    "env": {}
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "modules": false
+            }
+        ],
+        [
+            "minify",
+            {
+                "simplifyComparisons": false
+            }
+        ]
+    ],
+    "plugins": ["transform-remove-debugger"]
 }
