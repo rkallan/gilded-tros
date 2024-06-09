@@ -1,18 +1,21 @@
 {
     "name": "gildedtros",
     "version": "1.0.0",
-    "main": "index.js",
+    "private": true,
+    "license": "MIT",
     "type": "module",
+    "main": "index.js",
     "scripts": {
         "prebuild": "rm -rf build",
         "build": "babel src -d build",
-        "start": "node src/index.js",
+        "format:check": "npx eslint .",
+        "format:write": "npx eslint . --fix",
         "production": "node build/index.js",
+        "sort:package": "npx sort-package-json",
+        "start": "node src/index.js",
         "test": "jest",
         "test:watch": "jest --watchAll"
     },
-    "license": "MIT",
-    "private": true,
     "devDependencies": {
         "@babel/cli": "^7.24.7",
         "@babel/core": "^7.24.7",
